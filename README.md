@@ -9,9 +9,13 @@ Programs to be installed
 - tmux
 - [lazygit](https://github.com/jesseduffield/lazygit#installation)
 
-`sudo dnf install nvim vim fish tmux`
+```
+sudo dnf install nvim vim fish tmux
+```
 
-`sudo apt install nvim vim fish tmux`
+```
+sudo apt install nvim vim fish tmux
+```
 
 ## Config
 
