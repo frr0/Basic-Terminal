@@ -27,3 +27,7 @@ ln config.fish ~/.config/fish/
 ln config.fish ~/.config/nvim/
 ln .vimrc ~
 ```
+```
+cat /etc/shells
+chsh -s /usr/bin/fish
+```
