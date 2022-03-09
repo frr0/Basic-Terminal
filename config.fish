@@ -5,21 +5,12 @@ end
 set fish_greeting
 
 export EDITOR=nvim
-#export PATH=$PATH:~/.local/bin/scripts
 fish_add_path ~/.local/bin/scripts
 
-alias 1='cd -1'
-alias 2='cd -2'
-alias 3='cd -3'
-alias 4='cd -4'
-alias 5='cd -5'
-alias 6='cd -6'
-alias 7='cd -7'
-alias 8='cd -8'
-alias 9='cd -9'
 #alias _='sudo '
 
 alias r=ranger
+alias s=source
 alias t=tmux
 alias q=exit
 alias l=lazygit
@@ -32,8 +23,6 @@ alias c=clear
 alias h=htop
 alias f="nautilus ."
 alias gt="gdb -tui"
-# alias cda="cd **"
-# alias na="n **"
 alias k="t kill-server"
 alias zc="n ~/.zshrc"
 alias szc="source ~/.zshrc"
@@ -45,8 +34,6 @@ alias la="ls -lah"
 alias lh="ls -lh"
 alias e="cd .. && cd .. && cd run/media/"
 alias dot="cd ~/.dotfiles"
-# alias t='tmux -2'
-
 alias mt="xrandr --output eDP-1 --off && xrandr --output DP-1 --auto --left-of HDMI-1"
 alias cc="cp -r ~/Projects/Project_create/c . && cd c && n client.c"
 alias ccc="cp -r ~/Projects/Project_create/c_adv . && cd c_adv && n client.c"
@@ -56,7 +43,6 @@ alias cj="cp -r ~/Projects/Project_create/java . && cd java && n client.java"
 alias cs="cp -r ~/Projects/Project_create/sh . && cd sh && chmod +x program.sh && n program.sh"
 alias cm="cp -r ~/Projects/Project_create/md . && cd md && n note.md"
 alias lab="cd ~/Dropbox\ \(Politecnico\ Di\ Torino\ Studenti\)/Anno_II.1/ADS/Algorithms_and_Data_Structure/ "
-#alias pandocs="pandoc --pdf-engine=xelatex -V geometry:"top=2cm, bottom=1.5cm, left=2cm, right=2cm" --highlight-style zenburn -V colorlinks -V urlcolor=NavyBlue  --toc -N -o"
 alias apa="cd ~/Dropbox\ \(Politecnico\ Di\ Torino\ Studenti\)/Anno_II.1/ADS/theory_ex/Algorithms_and_Data_Structure_Library"
 alias os="cd ~/Dropbox\ \(Politecnico\ Di\ Torino\ Studenti\)/Anno_III/Operating_Systems"
 alias oo="cd ~/Dropbox\ \(Politecnico\ Di\ Torino\ Studenti\)/Anno_II.1/OOP/Object-oriented_Programming/Workspace"
@@ -69,6 +55,7 @@ alias pi="ssh pi@192.168.1.134"
 
 # Aliases
 alias g='git'
+alias ga='git stage'
 alias gst='git status'
 alias gl='git pull'
 alias gup='git fetch && git rebase'
@@ -84,15 +71,15 @@ alias gcp='git cherry-pick'
 alias glg='git log --stat --max-count=5'
 alias glgg='git log --graph --max-count=5'
 alias gss='git status -s'
-alias ga='git add'
+alias gf='git add'
 alias gm='git merge'
 alias grh='git reset HEAD'
 alias grhh='git reset HEAD --hard'
 
 # these aliases take advantage of the previous function
-#alias ggpull='git pull origin $(current_branch)'
-#alias ggpush='git push origin $(current_branch)'
-#alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+# alias ggpull='git pull origin $(current_branch)'
+# alias ggpush='git push origin $(current_branch)'
+# alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
 
 # Git and svn mix
 alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
@@ -228,4 +215,9 @@ function _is_multiplexed
     set multiplexer "screen"
   end
   echo $multiplexer
+end
+
+function fish_user_key_bindings
+    bind \eu forward-word
+    bind \ei forward-char
 end
