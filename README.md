@@ -21,6 +21,8 @@ sudo apt install neovim vim fish tmux
 
 ```
 git clone https://github.com/frr0/Basic-Terminal.git
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher install jethrokuan/fzf
 cd Basic-Terminal
 ln .tmux.conf ~
 ln config.fish ~/.config/fish/
