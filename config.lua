@@ -1,7 +1,8 @@
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "vscode"
+vim.g.vscode_style = "dark"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -11,6 +12,7 @@ vim.cmd([[
 set relativenumber
 set ignorecase
 nnoremap ,z :wqa <cr>
+nnoremap <silent>esc esc
 nnoremap <space>s :wa <cr>
 nnoremap <space>0 :bdelete <cr>
 nnoremap <space>9 :q! <cr>
@@ -155,6 +157,8 @@ lvim.builtin.which_key.mappings["v"] = {
   name = "Search",
   b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
   c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+  d = { "<cmd>lua require('vscode').change_style('dark')<cr>", "dark theme" },
+  l = { "<cmd>lua require('vscode').change_style('light')<cr>", "light theme" },
   h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
   M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
   r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
@@ -162,6 +166,11 @@ lvim.builtin.which_key.mappings["v"] = {
   k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
   C = { "<cmd>Telescope commands<cr>", "Commands" },
 }
+
+vim.api.nvim_set_keymap("n", ",cc", "<Plug>kommentary_line_default<ESC><ESC>", {})
+vim.api.nvim_set_keymap("x", ",cc", "<Plug>kommentary_visual_default<ESC><ESC>", {})
+vim.api.nvim_set_keymap("n", ",cu", "<Plug>kommentary_line_default<ESC><ESC>", {})
+vim.api.nvim_set_keymap("x", ",cu", "<Plug>kommentary_visual_default<ESC><ESC>", {})
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -213,6 +222,10 @@ lvim.plugins = {
   { "vim-scripts/YankRing.vim" },
   { "vim-scripts/mips.vim" },
   { "huawenyu/termdebug.nvim" },
+  { "sakhnik/nvim-gdb" },
+  { "EdenEast/nightfox.nvim" },
+  { "b3nj5m1n/kommentary" },
+  { "jbyuki/one-small-step-for-vimkind" },
+  { "Mofiqul/vscode.nvim" }
 }
-
 lvim.builtin.dap.active = true
