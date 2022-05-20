@@ -1,8 +1,11 @@
--- general
-lvim.log.level = "warn"
+-- - general
+-- lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "vscode"
 vim.g.vscode_style = "dark"
+vim.opt.laststatus = 3
+vim.splitbelow = false -- force all horizontal splits to go below current window
+vim.splitright = false -- force all vertical splits to go to the right of current window
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -11,6 +14,7 @@ lvim.keys.normal_mode["<space>w"] = ":vsp <cr>"
 vim.cmd([[
 set relativenumber
 set ignorecase
+set wrap
 nnoremap ,z :wqa <cr>
 nnoremap <silent>esc esc
 nnoremap <space>s :wa <cr>
@@ -19,7 +23,7 @@ nnoremap <space>9 :q! <cr>
 nnoremap <space>S :mksession! .session.vim <cr>
 nnoremap <space>O :so .session.vim <cr>
 nnoremap <S-l> gt
-nnoremap <S-h> gT 
+nnoremap <S-h> gT
 nnoremap <tab> :bnext <cr>
 nnoremap <S-tab> :bprevious <cr>
 nnoremap <space>v :bn <cr>
@@ -62,7 +66,6 @@ nnoremap <F3> :lua require("dapui").eval()<CR>
 nmap <space>5 <Plug>SnipRun
 nmap <space>6 <Plug>SnipRunOperator
 vmap f <Plug>SnipRun
-
 ]])
 
 lvim.builtin.which_key.mappings["a"] = { "<cmd>Telescope lsp_document_symbols<cr>", "doc" }
@@ -205,7 +208,7 @@ lvim.plugins = {
   { "folke/tokyonight.nvim" },
   { "folke/trouble.nvim", cmd = "TroubleToggle", },
   { "mfussenegger/nvim-dap" },
-  { "Pocco81/DAPInstall.nvim" },
+  -- { "Pocco81/DAPInstall.nvim" },
   { "Pocco81/dap-buddy.nvim" },
   { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
   { "nvim-telescope/telescope-dap.nvim" },
@@ -225,7 +228,120 @@ lvim.plugins = {
   { "sakhnik/nvim-gdb" },
   { "EdenEast/nightfox.nvim" },
   { "b3nj5m1n/kommentary" },
-  { "jbyuki/one-small-step-for-vimkind" },
+  { "liuchengxu/vista.vim" },
+  { "tomlion/vim-solidity" },
+  { "frr0/dap-install" },
+  { "lervag/vimtex" },
   { "Mofiqul/vscode.nvim" }
 }
 lvim.builtin.dap.active = true
+lvim.autocommands.custom_groups = {
+  { "WinEnter", "*", "set laststatus=3" },
+}
+local dap_install = require("dap-install")
+dap_install.config("codelldb", {})
+dap_install.config("ccppr_vsc", {})
+
+-- debugger
+-- Update this path
+local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.6.7/'
+local codelldb_path = extension_path .. 'adapter/codelldb'
+local liblldb_path = extension_path .. 'lldb/lib/liblldb.so'
+
+local dap_status, dap = pcall(require, "dap")
+
+if not dap_status then
+  vim.notify("Please Install 'nvim-dap'")
+  return
+end
+
+dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
+vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointRejected', { text = '🟦', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' })
+
+--require('dap-python').setup('/usr/bin/python3.10')
+vim.g.dap_virtual_text = true
+
+
+local dap_install = require("dap-install")
+
+dap_install.setup({
+  installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+})
+
+dap_install.config("python", {})
+dap_install.config("ccppr_vsc", {})
+dap_install.config("codelldb", {})
+dap_install.config("ccppr_lldb", {})
+
+require("nvim-dap-virtual-text").setup {
+  enabled = true, -- enable this plugin (the default)
+  enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+  highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
+  highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+  show_stop_reason = true, -- show stop reason when stopped for exceptions
+  commented = false, -- prefix virtual text with comment string
+  -- experimental features:
+  virt_text_pos = 'eol', -- position of virtual text, see `:h nvim_buf_set_extmark()`
+  all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+  virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
+  virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
+  -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
+}
+
+
+local dap, dapui = require("dap"), require("dapui")
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
+dapui.setup()
+
+local dap_status, dap = pcall(require, "dap")
+
+if not dap_status then
+  vim.notify("Please Install 'nvim-dap'")
+  return
+end
+
+dap.adapters.cppdbg = {
+  type = 'executable',
+  command = os.getenv('HOME') .. '/.local/share/nvim/dapinstall/ccppr_vsc/cpptools-linux/extension/bin/OpenDebugAD7',
+}
+
+vim.cmd([[
+" This is necessary for VimTeX to load properly. The "indent" is optional.
+" Note that most plugin managers will do this automatically.
+filetype plugin indent on
+
+" This enables Vim's and neovim's syntax-related features. Without this, some
+" VimTeX features will not work (see ":help vimtex-requirements" for more
+" info).
+syntax enable
+
+" Viewer options: One may configure the viewer either by specifying a built-in
+" viewer method:
+let g:vimtex_view_method = 'zathura'
+
+" Or with a generic interface:
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+
+" VimTeX uses latexmk as the default compiler backend. If you use it, which is
+" strongly recommended, you probably don't need to configure anything. If you
+" want another compiler backend, you can change it as follows. The list of
+" supported backends and further explanation is provided in the documentation,
+" see ":help vimtex-compiler".
+let g:vimtex_compiler_method = 'latexrun'
+
+" Most VimTeX mappings rely on localleader and this can be changed with the
+" following line. The default is usually fine and is the symbol "\".
+let maplocalleader = ","
+]])

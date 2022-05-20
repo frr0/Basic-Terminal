@@ -10,6 +10,7 @@ export EDITOR=nvim
 fish_add_path ~/.local/bin/scripts
 fish_add_path ~/.dotfiles/scripts/
 fish_add_path ~/.cargo/bin
+fish_add_path ~/dev/flutter/bin/
 
 # alias _="sudo "
 alias r=ranger
