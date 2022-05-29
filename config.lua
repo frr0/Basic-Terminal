@@ -274,6 +274,7 @@ dap_install.config("python", {})
 dap_install.config("ccppr_vsc", {})
 dap_install.config("codelldb", {})
 dap_install.config("ccppr_lldb", {})
+dap_install.config("dnetcs", {})
 
 require("nvim-dap-virtual-text").setup {
   enabled = true, -- enable this plugin (the default)
