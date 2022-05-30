@@ -208,15 +208,11 @@ lvim.plugins = {
   { "folke/tokyonight.nvim" },
   { "folke/trouble.nvim", cmd = "TroubleToggle", },
   { "mfussenegger/nvim-dap" },
-  -- { "Pocco81/DAPInstall.nvim" },
   { "Pocco81/dap-buddy.nvim" },
   { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
   { "nvim-telescope/telescope-dap.nvim" },
   { "theHamsta/nvim-dap-virtual-text" },
-  { "rcarriga/vim-ultest",
-    requires = { "vim-test/vim-test" },
-    run = ":UpdateRemotePlugins"
-  },
+  { "rcarriga/vim-ultest", requires = { "vim-test/vim-test" }, run = ":UpdateRemotePlugins" },
   { "jbyuki/one-small-step-for-vimkind" },
   { "michaelb/sniprun", run = 'bash ./install.sh' },
   { "epheien/termdbg" },
@@ -230,17 +226,18 @@ lvim.plugins = {
   { "b3nj5m1n/kommentary" },
   { "liuchengxu/vista.vim" },
   { "tomlion/vim-solidity" },
-  { "frr0/dap-install" },
   { "lervag/vimtex" },
+  { "frr0/dap-install" },
   { "Mofiqul/vscode.nvim" }
+  -- { "Pocco81/DAPInstall.nvim" },
 }
 lvim.builtin.dap.active = true
 lvim.autocommands.custom_groups = {
   { "WinEnter", "*", "set laststatus=3" },
 }
 local dap_install = require("dap-install")
-dap_install.config("codelldb", {})
-dap_install.config("ccppr_vsc", {})
+--[[ dap_install.config("codelldb", {})
+dap_install.config("ccppr_vsc", {}) ]]
 
 -- debugger
 -- Update this path
@@ -255,10 +252,10 @@ if not dap_status then
   return
 end
 
-dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
+--[[ dap.defaults.fallback.terminal_win_cmd = '80vsplit new'
 vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected', { text = '🟦', texthl = '', linehl = '', numhl = '' })
-vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '➡️', texthl = '', linehl = '', numhl = '' }) ]]
 
 --require('dap-python').setup('/usr/bin/python3.10')
 vim.g.dap_virtual_text = true
@@ -317,32 +314,32 @@ dap.adapters.cppdbg = {
   command = os.getenv('HOME') .. '/.local/share/nvim/dapinstall/ccppr_vsc/cpptools-linux/extension/bin/OpenDebugAD7',
 }
 
-vim.cmd([[
-" This is necessary for VimTeX to load properly. The "indent" is optional.
-" Note that most plugin managers will do this automatically.
-filetype plugin indent on
-
-" This enables Vim's and neovim's syntax-related features. Without this, some
-" VimTeX features will not work (see ":help vimtex-requirements" for more
-" info).
-syntax enable
-
-" Viewer options: One may configure the viewer either by specifying a built-in
-" viewer method:
-let g:vimtex_view_method = 'zathura'
-
-" Or with a generic interface:
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-
-" VimTeX uses latexmk as the default compiler backend. If you use it, which is
-" strongly recommended, you probably don't need to configure anything. If you
-" want another compiler backend, you can change it as follows. The list of
-" supported backends and further explanation is provided in the documentation,
-" see ":help vimtex-compiler".
-let g:vimtex_compiler_method = 'latexrun'
-
-" Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
-let maplocalleader = ","
-]])
+-- [[ vim.cmd([[
+-- " This is necessary for VimTeX to load properly. The "indent" is optional.
+-- " Note that most plugin managers will do this automatically.
+-- filetype plugin indent on
+-- 
+-- " This enables Vim's and neovim's syntax-related features. Without this, some
+-- " VimTeX features will not work (see ":help vimtex-requirements" for more
+-- " info).
+-- syntax enable
+-- 
+-- " Viewer options: One may configure the viewer either by specifying a built-in
+-- " viewer method:
+-- let g:vimtex_view_method = 'zathura'
+-- 
+-- " Or with a generic interface:
+-- let g:vimtex_view_general_viewer = 'okular'
+-- let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+-- 
+-- " VimTeX uses latexmk as the default compiler backend. If you use it, which is
+-- " strongly recommended, you probably don't need to configure anything. If you
+-- " want another compiler backend, you can change it as follows. The list of
+-- " supported backends and further explanation is provided in the documentation,
+-- " see ":help vimtex-compiler".
+-- let g:vimtex_compiler_method = 'latexrun'
+-- 
+-- " Most VimTeX mappings rely on localleader and this can be changed with the
+-- " following line. The default is usually fine and is the symbol "\".
+-- let maplocalleader = ","
+-- ]]) ]]
