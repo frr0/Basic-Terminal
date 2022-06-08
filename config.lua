@@ -36,6 +36,8 @@ nnoremap 0 $
 vmap 0 $
 nnoremap + {
 nnoremap - }
+vnoremap + {
+vnoremap - }
 nnoremap <space><space> :Telescope lsp_document_symbols<cr>
 nnoremap gv :%s/
 nnoremap <space>m :make <cr>

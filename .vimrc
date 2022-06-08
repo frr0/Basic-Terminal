@@ -1,8 +1,7 @@
 " (n)vim
 " stettings
 "===================================
-set number
-set relativenumber
+set relativenumber number
 set mouse=a
 set ignorecase
 set hidden
@@ -39,6 +38,10 @@ nnoremap \ 0
 vmap \ 0
 nnoremap 0 $
 vmap 0 $
+nnoremap + {
+nnoremap - }
+vnoremap + }
+vnoremap - }
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -73,25 +76,5 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Terminal
-let g:term_buf = 0
-let g:term_win = 0
 
-function! Term_toggle(height)
-    if win_gotoid(g:term_win)
-        hide
-    else
-        botright new
-        exec "resize " . a:height
-        try
-            exec "buffer " . g:term_buf
-        catch
-            call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
-        endtry
-        startinsert!
-        let g:term_win = win_getid()
-    endif
-endfunction
-
-nnoremap <space>t :call Term_toggle(20)<cr>
-tnoremap <space>t <C-\><C-n>:call Term_toggle(20)<cr>
+nnoremap <space>t  :bel ter<CR>
