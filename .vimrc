@@ -10,7 +10,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set autoindent
-set cursorline
+"set cursorline
 "colorscheme darkplus
 "set t_Co=256
 "set background=dark
@@ -49,7 +49,7 @@ nnoremap <c-l> <c-w>l
 
 " makefile
 nnoremap <space>e :Vexplore <cr>
-nnoremap <space>m :make <cr>
+nnoremap <space>m :!make <cr>
 nnoremap <space>w :vsp <cr>
 nnoremap <space>i :split <cr>
 
