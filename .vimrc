@@ -12,8 +12,8 @@ set shiftwidth=2
 set autoindent
 set cursorline
 "colorscheme darkplus
-set t_Co=256
-set background=dark
+"set t_Co=256
+"set background=dark
 "hi Normal ctermbg=16 guibg=#292C32
 "hi LineNr ctermbg=16 guibg=#292C32
 syntax on
@@ -40,7 +40,7 @@ nnoremap 0 $
 vmap 0 $
 nnoremap + {
 nnoremap - }
-vnoremap + }
+vnoremap + {
 vnoremap - }
 nnoremap <c-h> <c-w>h
 nnoremap <c-j> <c-w>j
@@ -56,7 +56,8 @@ nnoremap <space>i :split <cr>
 " yank
 nnoremap Y y$
 nnoremap yt 0y$
-vnoremap <C-c> "+y
+vnoremap y "+y
+nnoremap <C-c> "+y
 
 " man
 nnoremap gm :Man <cr>
