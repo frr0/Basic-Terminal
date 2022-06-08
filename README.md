@@ -8,6 +8,7 @@ Programs to be installed
 - fish
 - tmux
 - [lazygit](https://github.com/jesseduffield/lazygit#installation)
+- [Lunarvim](https://github.com/LunarVim/LunarVim)
 
 ```
 sudo dnf install neovim vim fish tmux
