@@ -10,24 +10,22 @@ Programs to be installed
 - [lazygit](https://github.com/jesseduffield/lazygit#installation)
 - [Lunarvim](https://github.com/LunarVim/LunarVim)
 
-```
-sudo dnf install neovim vim fish tmux
-```
-
-```
-sudo apt install neovim vim fish tmux
-```
-
 ## Config
 
+> This works for Fedora
+
 ```
+sudo dnf install neovim vim fish tmux
 git clone https://github.com/frr0/Basic-Terminal.git
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+sudo dnf copr enable atim/lazygit -y
+sudo dnf install lazygit
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher install jethrokuan/fzf
 cd Basic-Terminal
 ln .tmux.conf ~
 ln config.fish ~/.config/fish/
-ln config.fish ~/.config/nvim/
+ln config.lua ~/.config/lvim/
 ln .vimrc ~
 ```
 ```
