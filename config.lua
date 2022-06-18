@@ -14,6 +14,7 @@ lvim.keys.normal_mode["<space>w"] = ":vsp <cr>"
 lvim.keys.normal_mode["esc"] = false
 vim.cmd([[
 set relativenumber
+set cmdheight=0
 set ignorecase
 set wrap
 nnoremap ,z :wqa <cr>
@@ -229,9 +230,11 @@ lvim.plugins = {
   { "b3nj5m1n/kommentary" },
   { "liuchengxu/vista.vim" },
   { "tomlion/vim-solidity" },
-  { "lervag/vimtex" },
+  { "frazrepo/vim-rainbow" },
   { "frr0/dap-install" },
-  { "Mofiqul/vscode.nvim" }
+  { "lervag/vimtex" },
+  { "frr0/vscode.nvim" }
+  -- { "/home/fra/Projects/vscode.nvim" }
   -- { "Pocco81/DAPInstall.nvim" },
 }
 lvim.builtin.dap.active = true
