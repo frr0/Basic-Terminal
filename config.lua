@@ -1,4 +1,3 @@
--- - general
 -- lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "vscode"
@@ -233,6 +232,7 @@ lvim.plugins = {
   { "frazrepo/vim-rainbow" },
   { "frr0/dap-install" },
   { "lervag/vimtex" },
+  { "LunarVim/Colorschemes" },
   { "frr0/vscode.nvim" }
   -- { "/home/fra/Projects/vscode.nvim" }
   -- { "Pocco81/DAPInstall.nvim" },

@@ -1,4 +1,4 @@
-" (n)vim
+" (n)vi(m)
 " stettings
 "===================================
 set relativenumber number
@@ -10,12 +10,7 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set autoindent
-"set cursorline
-"colorscheme darkplus
-"set t_Co=256
-"set background=dark
-"hi Normal ctermbg=16 guibg=#292C32
-"hi LineNr ctermbg=16 guibg=#292C32
+set completeopt=menuone,noinsert,popup
 syntax on
 
 " mappings
@@ -26,8 +21,7 @@ let g:mapleader=","
 nnoremap <leader>z :wqa <cr>
 nnoremap <space>s :wa <cr>
 nnoremap <space>0 :q! <cr>
-nnoremap <space>S :mksession! .session.vim <cr>
-nnoremap <space>O :so .session.vim <cr>
+inoremap <tab> <c-x><c-k>
 
 " move
 nnoremap <Tab> gt
@@ -56,7 +50,6 @@ nnoremap <space>i :split <cr>
 " yank
 nnoremap Y y$
 nnoremap yt 0y$
-vnoremap y "+y
 nnoremap <C-c> "+y
 
 " man
@@ -77,5 +70,4 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Terminal
-
 nnoremap <space>t  :bel ter<CR>
