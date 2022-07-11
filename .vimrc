@@ -11,17 +11,15 @@ set tabstop=2
 set shiftwidth=2
 set autoindent
 set completeopt=menuone,noinsert,popup
+let g:mapleader=","
 syntax on
 
 " mappings
 "===================================
-let g:mapleader=","
-
 " save and exit
 nnoremap <leader>z :wqa <cr>
 nnoremap <space>s :wa <cr>
 nnoremap <space>0 :q! <cr>
-inoremap <tab> <c-x><c-k>
 
 " move
 nnoremap <Tab> gt
@@ -42,15 +40,19 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
 " makefile
-nnoremap <space>e :Vexplore <cr>
-nnoremap <space>m :!make <cr>
+nnoremap <space>e :Vexplore<cr>
+":vert res 30<cr>
+map <F2> :!c<cr>:!ls<CR>
+nnoremap <space>m :wa<cr>:!make <cr>
 nnoremap <space>w :vsp <cr>
 nnoremap <space>i :split <cr>
+nnoremap <space>ò :nohlsearch<cr>
 
 " yank
 nnoremap Y y$
 nnoremap yt 0y$
 nnoremap <C-c> "+y
+vnoremap <C-c> "+y
 
 " man
 nnoremap gm :Man <cr>
@@ -60,14 +62,24 @@ nnoremap gc :%s/
 
 " brackets
 inoremap " ""<left>
-inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap { {}<left>
+
+"indent
+nnoremap gò gg=GGG
 vnoremap < <gv
 vnoremap > >gv
+nnoremap gp `[v`]
 
 " Terminal
-nnoremap <space>t  :bel ter<CR>
+nnoremap <space>t :bel ter<CR>
+
+" comment
+vnoremap <leader>cc :norm i//<cr>
+vnoremap <leader>cv :norm i##<cr>
+vnoremap <leader>cx :norm i--<cr>
+vnoremap <leader>cz :norm i"<cr>
+vnoremap <leader>cu :norm xx<cr>
