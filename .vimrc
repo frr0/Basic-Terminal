@@ -126,8 +126,8 @@ set complete+=k
 nnoremap gc :%s/
 
 " brackets
-""inoremap " ""<left>
-""inoremap ' ''<left>
+inoremap " ""<left>
+inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -145,7 +145,7 @@ nnoremap <leader>t :bel ter<CR>
 inoremap <M-i> ![image](support/){width=70%}<left><left><left><left><left><left><left><left><left><left><left><left>
 inoremap <M-f> $$$$<left><left>
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css', 'c#']
-nnoremap <leader>zz :!zathura %<.pdf & <cr>
+nnoremap <leader>a :!zathura %<.pdf & <cr>
 
 " Commenting blocks of code.
 augroup commenting_blocks_of_code
