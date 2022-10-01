@@ -22,6 +22,7 @@ set scrolloff=7
 set cursorline
 set noswapfile
 let g:mapleader=","
+nmap <space> <leader>
 colorscheme slate
 syntax on
 
@@ -29,19 +30,19 @@ syntax on
 "===================================
 " save and exit
 nnoremap <leader>z :wqa <cr>
-nnoremap <space>s :wa <cr>
+nnoremap <leader>s :wa <cr>
 nnoremap <silent>esc esc
-nnoremap <space>0 :bdelete <cr>
-nnoremap <space>9 :q! <cr>
-nnoremap <space>S :mksession! .session.vim <cr>
-nnoremap <space>O :so .session.vim <cr>
+nnoremap <leader>0 :bdelete <cr>
+nnoremap <leader>9 :q! <cr>
+nnoremap <leader>S :mksession! .session.vim <cr>
+nnoremap <leader>O :so .session.vim <cr>
 
 " move
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-nnoremap <space>v :bn <cr>
-nnoremap <space>b :tabe <cr>
-nnoremap <space>n G=ggg;
+nnoremap <leader>v :bn <cr>
+nnoremap <leader>b :tabe <cr>
+nnoremap <leader>n G=ggg;
 nnoremap \ 0
 vmap \ 0
 nnoremap 0 $
@@ -75,13 +76,13 @@ noremap <left> :bp<CR>
 noremap <right> :bn<CR>
 
 " makefile
-nnoremap <space>e :Vexplore<cr>
+nnoremap <leader>e :Vexplore<cr>
 ":vert res 30<cr>
 map <F2> :!c<cr>:!ls<CR>
-nnoremap <space>m :wa \| :!make <cr>
-nnoremap <space>w :vsp <cr>
-nnoremap <space>i :split <cr>
-nnoremap <space>ò :nohlsearch<cr>
+nnoremap <leader>m :wa \| :!make <cr>
+nnoremap <leader>w :vsp <cr>
+nnoremap <leader>i :split <cr>
+nnoremap <leader>ò :nohlsearch<cr>
 
 map <leader>th :tabfirst<cr>
 map <leader>tl :tablast<cr>
@@ -103,8 +104,8 @@ noremap <leader>5 5gt
 noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<cr>
+"noremap <leader>9 9gt
+"noremap <leader>0 :tablast<cr>
 
 map <Left> <Nop>
 map <Right> <Nop>
@@ -117,14 +118,6 @@ nnoremap Y y$
 nnoremap yt 0y$
 nnoremap <C-c> "+y
 vnoremap <C-c> "+y
-nnoremap yy "+y
-nnoremap dd "*dd
-vnoremap y :'<,`>y+ 
-"vnoremap d "+y \| :d
-"nnoremap D :d \| "+y
-"nnoremap p :p \| "+p <cr>
-"nnoremap P :P \| <C-r>y
-"vnoremap <C-c> "+y
 
 " man
 nnoremap gm :Man <cr>
@@ -133,8 +126,8 @@ set complete+=k
 nnoremap gc :%s/
 
 " brackets
-inoremap " ""<left>
-inoremap ' ''<left>
+""inoremap " ""<left>
+""inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
@@ -147,16 +140,22 @@ vnoremap > >gv
 nnoremap gp `[v`]
 
 " Terminal
-nnoremap <space>t :bel ter<CR>
-
-" comment
-vnoremap <leader>cc :norm i//<cr>
-vnoremap <leader>cv :norm i##<cr>
-vnoremap <leader>cx :norm i--<cr>
-vnoremap <leader>cz :norm i"<cr>
-vnoremap <leader>cu :norm xx<cr>
+nnoremap <leader>t :bel ter<CR>
 
 inoremap <M-i> ![image](support/){width=70%}<left><left><left><left><left><left><left><left><left><left><left><left>
 inoremap <M-f> $$$$<left><left>
-let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css']
-nnoremap <space>zz :!zathura %<.pdf & <cr>
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css', 'c#']
+nnoremap <leader>zz :!zathura %<.pdf & <cr>
+
+" Commenting blocks of code.
+augroup commenting_blocks_of_code
+  autocmd!
+  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+  autocmd FileType conf,fstab       let b:comment_leader = '# '
+  autocmd FileType tex              let b:comment_leader = '% '
+  autocmd FileType mail             let b:comment_leader = '> '
+  autocmd FileType vim              let b:comment_leader = '" '
+  augroup END
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>))
