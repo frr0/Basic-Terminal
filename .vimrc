@@ -1,4 +1,7 @@
 " (n)vi(m)
+set relativenumber number
+set mouse=a
+set ignorecase
 " stettings
 "===================================
 set relativenumber number
@@ -10,7 +13,8 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set autoindent
-set completeopt=menuone,noinsert,popup
+"set completeopt=menuone,noinsert,popup
+set clipboard=unnamedplus
 set ruler
 set showcmd
 set showmode
@@ -26,13 +30,18 @@ syntax on
 " save and exit
 nnoremap <leader>z :wqa <cr>
 nnoremap <space>s :wa <cr>
-nnoremap <space>0 :q! <cr>
+nnoremap <silent>esc esc
+nnoremap <space>0 :bdelete <cr>
+nnoremap <space>9 :q! <cr>
+nnoremap <space>S :mksession! .session.vim <cr>
+nnoremap <space>O :so .session.vim <cr>
 
 " move
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <space>v :bn <cr>
 nnoremap <space>b :tabe <cr>
+nnoremap <space>n G=ggg;
 nnoremap \ 0
 vmap \ 0
 nnoremap 0 $
@@ -69,7 +78,7 @@ noremap <right> :bn<CR>
 nnoremap <space>e :Vexplore<cr>
 ":vert res 30<cr>
 map <F2> :!c<cr>:!ls<CR>
-nnoremap <space>m :wa<cr>:!make <cr>
+nnoremap <space>m :wa \| :!make <cr>
 nnoremap <space>w :vsp <cr>
 nnoremap <space>i :split <cr>
 nnoremap <space>ò :nohlsearch<cr>
@@ -103,10 +112,19 @@ map <Up> <Nop>
 map <Down> <Nop>
 
 " yank
+nnoremap yu y$
 nnoremap Y y$
 nnoremap yt 0y$
 nnoremap <C-c> "+y
 vnoremap <C-c> "+y
+nnoremap yy "+y
+nnoremap dd "*dd
+vnoremap y :'<,`>y+ 
+"vnoremap d "+y \| :d
+"nnoremap D :d \| "+y
+"nnoremap p :p \| "+p <cr>
+"nnoremap P :P \| <C-r>y
+"vnoremap <C-c> "+y
 
 " man
 nnoremap gm :Man <cr>
@@ -137,3 +155,8 @@ vnoremap <leader>cv :norm i##<cr>
 vnoremap <leader>cx :norm i--<cr>
 vnoremap <leader>cz :norm i"<cr>
 vnoremap <leader>cu :norm xx<cr>
+
+inoremap <M-i> ![image](support/){width=70%}<left><left><left><left><left><left><left><left><left><left><left><left>
+inoremap <M-f> $$$$<left><left>
+let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css']
+nnoremap <space>zz :!zathura %<.pdf & <cr>
