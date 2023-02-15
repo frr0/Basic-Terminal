@@ -107,10 +107,10 @@ noremap <leader>8 8gt
 "noremap <leader>9 9gt
 "noremap <leader>0 :tablast<cr>
 
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+" map <Left> <Nop>
+" map <Right> <Nop>
+" map <Up> <Nop>
+" map <Down> <Nop>
 
 " yank
 nnoremap yu y$
@@ -147,7 +147,7 @@ inoremap <M-f> $$$$<left><left>
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css', 'c#']
 nnoremap <leader>a :!zathura %<.pdf & <cr>
 
-" Commenting blocks of code.
+" " Commenting blocks of code.
 augroup commenting_blocks_of_code
   autocmd!
   autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
