@@ -260,3 +260,4 @@ set fish_color_search_match --background=black
 
 # Created by `userpath` on 2022-04-15 08:01:27
 set PATH $PATH /home/fra/.local/bin
+
