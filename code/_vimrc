@@ -21,8 +21,8 @@ set showmode
 set scrolloff=7
 set cursorline
 set noswapfile
-let g:mapleader=","
-nmap <space> <leader>
+let g:mapleader="|"
+nmap <|> <leader>
 colorscheme slate
 syntax on
 
@@ -126,12 +126,12 @@ set complete+=k
 nnoremap gc :%s/
 
 " brackets
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap { {}<left>
+"inoremap " ""<left>
+"inoremap ' ''<left>
+"inoremap ( ()<left>
+"inoremap [ []<left>
+"inoremap { {}<left>
+"inoremap { {}<left>
 
 "indent
 nnoremap gò gg=GGG
@@ -146,16 +146,3 @@ inoremap <M-i> ![image](support/){width=70%}<left><left><left><left><left><left>
 inoremap <M-f> $$$$<left><left>
 let g:markdown_fenced_languages = ['html', 'python', 'ruby', 'vim', 'c', 'cpp', 'java', 'php', 'css', 'c#']
 nnoremap <leader>a :!zathura %<.pdf & <cr>
-
-" " Commenting blocks of code.
-augroup commenting_blocks_of_code
-  autocmd!
-  autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-  autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-  autocmd FileType conf,fstab       let b:comment_leader = '# '
-  autocmd FileType tex              let b:comment_leader = '% '
-  autocmd FileType mail             let b:comment_leader = '> '
-  autocmd FileType vim              let b:comment_leader = '" '
-  augroup END
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>))

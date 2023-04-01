@@ -17,7 +17,7 @@
   "editor.occurrencesHighlight": false,
   "editor.matchBrackets": "never",
   "workbench.startupEditor": "newUntitledFile",
-  "vim.vimrc.path": "c:\\Users\\franc\\_vimrc",
+  "vim.vimrc.path": "C:\\Users\\franc\\_vimrc",
   "vim.vimrc.enable": true,
   "breadcrumbs.filePath": "off",
   "breadcrumbs.enabled": false,
@@ -1123,7 +1123,7 @@
         "k"
       ],
       "after": [
-        "<C-k"
+        "<C-k>"
       ]
     },
     {
@@ -1133,6 +1133,22 @@
       ],
       "after": [
         "<C-l>"
+      ]
+    },
+    {
+      "before": [
+        "+"
+      ],
+      "after": [
+        "{"
+      ]
+    },
+    {
+      "before": [
+        "-"
+      ],
+      "after": [
+        "}"
       ]
     },
     {
@@ -1149,6 +1165,31 @@
       ],
       "after": [
         "$"
+      ]
+    },
+    {
+      "before": [
+        // "$"
+        "\\"
+      ],
+      "after": [
+        "0"
+      ]
+    },
+    // {
+    //   "before": [
+    //     "\\"
+    //   ],
+    //   "after": [
+    //     "$"
+    //   ]
+    // },
+    {
+      "before": [
+        "1"
+      ],
+      "after": [
+        "1"
       ]
     }
   ],
@@ -1212,5 +1253,5 @@
   "vim.cursorStylePerMode.visual": "block",
   "vim.cursorStylePerMode.visualblock": "block",
   "vim.cursorStylePerMode.visualline": "block",
-  "workbench.activityBar.visible": false
+  "security.workspace.trust.untrustedFiles": "open"
 }
