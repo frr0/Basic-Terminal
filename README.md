@@ -15,7 +15,7 @@ Programs to be installed
 > This works for Fedora
 
 ```
-sudo dnf install neovim vim fish tmux
+sudo dnf install neovim vim fish tmux bat eza fd-find fzf python3-pip ripgrep zsh
 git clone https://github.com/frr0/Basic-Terminal.git
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 sudo dnf copr enable atim/lazygit -y
@@ -32,3 +32,4 @@ ln .vimrc ~
 cat /etc/shells
 chsh -s /usr/bin/fish
 ```
+install OH-MY-ZSH
